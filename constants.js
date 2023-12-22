@@ -1,9 +1,24 @@
 const LOGGED_IN_KEY = "loggedIn";
 
+const JUMBO_CARDS = [
+  {
+    title: "Personalized Financial Planning",
+    image: "./assets/appointment-advice.jpg",
+    description:
+      "Our team of experts takes the time to understand your unique financial goals and creates personalized investment and wealth management strategies just for you.",
+  },
+  {
+    title: "Secure and Diverse Investment Options",
+    image: "./assets/register-account.jpg",
+    description:
+      "Access a wide range of investment opportunities, from stocks and bonds to alternative investments, carefully curated to mitigate risks and maximize returns.",
+  },
+];
+
 const ACTIONS = [
   {
+    eventName: "Account Opened", // TODO
     title: "Open Account",
-    eventName: "Account Created",
     image: "./assets/open-account.jpeg",
     description:
       "Sign up for a new online financial account, provide personal information, and set up login credentials to access financial services.",
@@ -15,8 +30,8 @@ const ACTIONS = [
     ],
   },
   {
+    eventName: "Funds Transferred", // TODO
     title: "Transfer Funds",
-    eventName: "Funds Transferred",
     image: "./assets/transfer-funds.jpeg",
     description:
       "Initiate the movement of funds between different financial accounts, whether within the same institution or to external accounts at other banks.",
@@ -29,8 +44,8 @@ const ACTIONS = [
     ],
   },
   {
+    eventName: "Security Stock Purchased", // TODO
     title: "Purchase Crypto",
-    eventName: "Security Stock Purchased",
     image: "./assets/purchase-crypto.jpeg",
     description:
       "Buy digital currencies like Bitcoin, Ethereum, and more through our secure platform.",
@@ -41,8 +56,8 @@ const ACTIONS = [
     ],
   },
   {
+    eventName: "Security Stock Sold", // TODO
     title: "Manage Investments",
-    eventName: "Security Stock Sold",
     image: "./assets/manage-investments.jpeg",
     description:
       "Buy or sell various types of investments, such as stocks, bonds, or mutual funds, to actively manage or grow your investment portfolio.",
@@ -53,8 +68,8 @@ const ACTIONS = [
     ],
   },
   {
+    eventName: "Bill Paid", // TODO
     title: "Pay Bills",
-    eventName: "Bill Paid",
     image: "./assets/pay-bills.jpeg",
     description:
       "Make payments for bills, loans, or recurring expenses through your financial account, often with the option to set up automated payments for convenience.",
@@ -66,8 +81,8 @@ const ACTIONS = [
     ],
   },
   {
+    eventName: "Customer Support Requested", // TODO
     title: "Request Customer Support",
-    eventName: "Customer Support Requested",
     image: "./assets/customer-support.jpeg",
     description:
       "Contact customer support to seek assistance with account-related issues, resolve problems, or ask questions regarding products and services.",

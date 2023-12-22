@@ -10,6 +10,7 @@ function addHeaderNavClickListeners() {
 // Create an Action Card
 function generateActionCard(action, index) {
   const actionCard = document.createElement("div");
+  actionCard.setAttribute("id", index);
   actionCard.classList.add("col-md-4", "mb-4");
 
   actionCard.innerHTML = `
@@ -50,7 +51,6 @@ function getDynamicProperties() {
     const propertyValue = input.value;
     const propName = normalizePropertyName(propertyNames[i].textContent);
     dynamicProperties[propName] = propertyValue;
-    //console.log(propName + ", " + propertyValue);
   }
 
   // propertyInputs.forEach((input) => {
@@ -75,11 +75,15 @@ function updateLiveCodePreview() {
     description: descriptionElement.textContent, // Use textContent instead of value
     ...getDynamicProperties(),
   };
+  const modalForm = document.querySelector("#actionModal .action-content");
+  const eventName = modalForm.getAttribute("data-event");
 
   const liveCodeContent = liveCodeBlock.querySelector("code");
-  liveCodeContent.textContent = `analytics.track('${
-    updatedTrackEvent.title
-  }', ${JSON.stringify(updatedTrackEvent, null, 2)});`;
+  liveCodeContent.textContent = `analytics.track('${eventName}', ${JSON.stringify(
+    updatedTrackEvent,
+    null,
+    2
+  )});`;
 
   // Trigger highlight.js syntax highlighting
   hljs.highlightElement(liveCodeContent);
@@ -159,6 +163,7 @@ function generateActionModalContent(action) {
   modalDescription.textContent = action.description;
 
   const modalForm = document.querySelector("#actionModal .action-content");
+  modalForm.setAttribute("data-event", action.eventName);
   modalForm.innerHTML = ""; // Clear previous fields
 
   if (action.properties.length > 0) {
@@ -205,7 +210,7 @@ function addSegmentBtnListener() {
   segmentButton.addEventListener("click", () => {
     // Get the Title and Description from the Modal
     const titleInput = getElById("actionModalLabel");
-    //const descriptionInput = getElById("actionModalDescription");
+    const descriptionInput = getElById("actionModalDescription");
 
     // Get the action info
     const actionIndex = parseInt(segmentButton.getAttribute("data-action-id"));
@@ -214,12 +219,12 @@ function addSegmentBtnListener() {
     // Create the track event object with computed property names
     const trackEvent = {
       title: titleInput.textContent,
-      //description: descriptionInput.textContent,
+      description: descriptionInput.textContent,
       ...getDynamicProperties(), // Spread the dynamic properties into the event payload
     };
 
     // Track the event using Segment with the computed property names
-    analytics.track(titleInput.textContent, trackEvent);
+    analytics.track(actionInfo.eventName, trackEvent);
   });
 }
 
@@ -310,7 +315,37 @@ function addLogout() {
     });
 }
 
+function addJumboCards() {
+  const jumboCardContainer = document.querySelector(
+    ".features .container .row"
+  );
+
+  JUMBO_CARDS.forEach(
+    (card) =>
+      (jumboCardContainer.innerHTML += `
+      <div class="col-md-6">
+        <div class="feature card h-100">
+          <div
+            class="card-body d-flex flex-column align-items-stretch h-100"
+          >      
+            <h2 class="feature-title">${card.title}</h2>
+            <img
+              src="${card.image}"
+              alt="Feature Image"
+              class="feature-image"
+            />
+            <p class="feature-description">
+              ${card.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    `)
+  );
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  addJumboCards();
   addHeaderNavClickListeners();
   generateActionCards();
   addModalTriggerListeners();
