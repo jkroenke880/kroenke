@@ -234,7 +234,7 @@ function addContactUsBtnListener() {
   contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    console.log("begin Contact Us Functionality");
+    //console.log("begin Contact Us Functionality");
     const name = getElById("contactName").value;
     const email = getElById("contactEmail").value;
     const companyName = getElById("contactCompanyName").value;
@@ -256,6 +256,10 @@ function addContactUsBtnListener() {
       name: name,
       email: email,
     });
+
+    // Set user as logged in and update button states
+    localStorage.setItem(LOGGED_IN_KEY, "true");
+    updateButtonStates();
   });
 }
 
