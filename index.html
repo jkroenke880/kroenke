@@ -17,6 +17,21 @@
       href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/vs2015.min.css"
     />
 
+    <!-- OneTrust Cookies Consent Notice start for jonkim47.github.io -->
+    <script
+      src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+      type="text/javascript"
+      charset="UTF-8"
+      data-domain-script="ba32f12d-0929-43e6-b2c6-e5bf682fab98"
+    ></script>
+    <script type="text/javascript">
+      function OptanonWrapper() {}
+    </script>
+    <!-- OneTrust Cookies Consent Notice end for jonkim47.github.io -->
+
+    <!-- Add Segment's OneTrust Consent Wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
+
     <!-- Load AJS -->
     <script>
       !(function () {
@@ -78,7 +93,7 @@
             };
             analytics._writeKey = "SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv";
             analytics.SNIPPET_VERSION = "4.16.1";
-            analytics.load("SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv");
+            withOneTrust(analytics).load("SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv"); // <~~~ Modified analytics.load() to withOneTrust(analytics).load()
             analytics.page("Home");
           }
       })();
