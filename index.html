@@ -30,6 +30,9 @@
     </script>
     <!-- OneTrust Cookies Consent Notice end for segment-solutions-eng.github.io -->
 
+    <!-- Add Segment's OneTrust Consent Wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
+
     <!-- Load AJS -->
     <script>
       !(function () {
@@ -91,7 +94,7 @@
             };
             analytics._writeKey = "SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv";
             analytics.SNIPPET_VERSION = "4.16.1";
-            analytics.load("SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv");
+            withOneTrust(analytics).load("SyTcjvqXkOghGuGeGPRyobcZ62mUxHpv");
             analytics.page("Home");
           }
       })();
